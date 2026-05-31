@@ -2,7 +2,7 @@
 
 # --------------------------------------------------
 # Script: system_health_check.sh
-# Purpose: Generate a Linux system health report
+# Purpose: Generate Linux System Health Report
 # Author: Pritesh Kumar
 # --------------------------------------------------
 
@@ -10,28 +10,35 @@ echo "======================================="
 echo "         SYSTEM HEALTH REPORT"
 echo "======================================="
 
-# Hostname
-HOSTNAME=$(hostname)
+echo ""
 
-# Uptime
-UPTIME=$(uptime -p)
+echo "Hostname      : $(hostname)"
 
-# Memory Usage
-MEMORY=$(free | awk '/Mem:/ {printf("%.0f"), $3/$2 * 100}')
+echo "Kernel        : $(uname -r)"
 
-# Root Disk Usage
-DISK=$(df -h / | awk 'NR==2 {print $5}')
-
-# Logged In Users
-USERS=$(who | wc -l)
+echo "Current User  : $(whoami)"
 
 echo ""
-echo "Hostname      : $HOSTNAME"
-echo "Uptime        : $UPTIME"
-echo "Memory Usage  : ${MEMORY}%"
-echo "Disk Usage    : $DISK"
-echo "Logged Users  : $USERS"
+
+if command -v uptime >/dev/null 2>&1; then
+    echo "Uptime        : $(uptime -p)"
+else
+    echo "Uptime        : Not Available"
+fi
+
+if command -v free >/dev/null 2>&1; then
+    MEMORY=$(free | awk '/Mem:/ {printf("%.0f"), $3/$2 * 100}')
+    echo "Memory Usage  : ${MEMORY}%"
+else
+    echo "Memory Usage  : Not Available"
+fi
+
+echo "Disk Usage    : $(df -h / | awk 'NR==2 {print $5}')"
+
+echo "Logged Users  : $(who | wc -l)"
+
 echo ""
+
 echo "======================================="
 echo "Report Generated Successfully"
 echo "======================================="
