@@ -10,6 +10,9 @@ Practical Bash automation scripts inspired by real-world Linux administration, m
 |----------|-------------|
 | disk_monitor.sh | Monitor filesystem utilization and alert on threshold breaches |
 | system_health_check.sh | Generate overall server health report |
+| process_monitor.sh | Monitor Linux processes |
+| service_monitor.sh | Monitor Linux services |
+
 
 ### Log Management
 
@@ -42,13 +45,3 @@ Practical Bash automation scripts inspired by real-world Linux administration, m
 - Ansible integration
 - AWS automation
 - Security auditing
-
----
-
-## Author
-
-**Pritesh Kumar**
-
-Linux Administrator | DevOps & Cloud Enthusiast | Automation Engineer
-
-GitHub: https://github.com/pritesh0405
